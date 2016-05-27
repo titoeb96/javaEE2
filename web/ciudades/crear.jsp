@@ -41,10 +41,10 @@
                         <h3 class="panel-title">Crear Ciudades</h3>
                     </div>
                     <div class="panel-body">
-            <form>
+            <form method="POST" action="../ServletCiudad">
   <div class="form-group">
     <label for="exampleInputEmail1">Nombre</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="CHIMPAN-C THU MAEZTROH *_*">
+    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="CHIMPAN-C THU MAEZTROH *_*">
   </div>
  
  
