@@ -21,13 +21,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#">JAVAEE</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="active"><a href="../index.jsp">Inicio</a></li>
+                        <li><a href="../usuarios/index.jsp">Usuarios</a></li>
+                        <li><a href="../ciudades/index.jsp">Ciudades</a></li>
+                        <li><a href="../reportes/index.jsp">Reportes</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -40,7 +41,16 @@
                         <h3 class="panel-title">Crear Ciudades</h3>
                     </div>
                     <div class="panel-body">
-            
+            <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nombre</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="CHIMPAN-C THU MAEZTROH *_*">
+  </div>
+ 
+ 
+ 
+  <button type="submit" class="btn btn-default">Ingresar</button>
+</form>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<%@page import="accesodato.Coneccion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -25,12 +26,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Proyecto JAVAEE</a>
+                    <a class="navbar-brand" href="#">JAVAEE</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                  <li class="active"><a href="../index.jsp">Inicio</a></li>
-                        <li><a href="../usuarios/index.jsp">Usuarios</a></li>
+                        <li class="active"><a href="../index.jsp">Inicio</a></li>
+                          <li><a href="../usuarios/index.jsp">Usuarios</a></li>
                         <li><a href="../ciudades/index.jsp">Ciudades</a></li>
                         <li><a href="../reportes/index.jsp">Reportes</a></li>
                     </ul>
@@ -53,39 +54,25 @@
                                 <th>NOMBRE</th>
                                 <th>1erAPELLIDO</th>
                                 <th>2doAPELLIDO</th>
-                                <th>CIUDAD</th>
                                 <th>Acciones</th>
                             </thead>
                             <tbody>
                                 <%
-                                    Connection con=null;
-                                    String driver="com.mysql.jdbc.Driver";
-                                    String user="root";
-                                    String pass="";
-                                    String url="jdbc:mysql://localhost:3306/javaee";
-                                    try{
-                                        Class.forName(driver);
-                                        con=DriverManager.getConnection(url, user, pass);
-                                        Statement stmt=con.createStatement();
-                                        stmt.executeQuery("select Usuarios.usuario_id,Usuarios.nombre,Usuarios.apepat,Usuarios.apemat,Ciudades.nombre as ciudad from Usuarios,Ciudades where usuarios.ciudad_id=ciudades.ciudad_id and usuarios.estado='activo'");
-                                        ResultSet rs=stmt.getResultSet();
-                                        while(rs.next()){
-                                            out.println("<tr>");
-                                                out.println("<td>"+rs.getString("usuario_id")+"</td>");
-                                                out.println("<td>"+rs.getString("nombre")+"</td>");
-                                                out.println("<td>"+rs.getString("apepat")+"</td>");
-                                                out.println("<td>"+rs.getString("apemat")+"</td>");
-                                                out.println("<td>"+rs.getString("ciudad")+"</td>");
-                                            out.println("</tr>");
-                                        }
-                                    }catch(Exception ex){
-                                        out.println("Error de conexion!!"+ex.getMessage());
-                                    }
+                                   Coneccion con=new Coneccion();
+                                   con.setConsulta("select Usuarios.usuario_id,Usuarios.nombre,Usuarios.apepat,Usuarios.apemat,Ciudades.nombre as ciudad from Usuarios,Ciudades where usuarios.ciudad_id=ciudades.ciudad_id and usuarios.estado='activo'");
+                                   while(con.getResultado().next()){
+                                    out.println("<tr>");
+                                       out.println("<td>"+con.getResultado().getString("usuario_id")+"</td>");
+                                       out.println("<td>"+con.getResultado().getString("nombre")+"</td>");
+                                       out.println("<td>"+con.getResultado().getString("apepat")+"</td>");
+                                       out.println("<td>"+con.getResultado().getString("apemat")+"</td>");
+                                       out.println("<td>"+con.getResultado().getString("ciudad")+"</td>");
+                                    out.println("</tr>");
+                                   }
                                 %>
                             </tbody>
                             
                         </table>
-                            <a href="../index.jsp"class="btn btn-danger">Volver</a>
                         
                         
 

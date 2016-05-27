@@ -1,3 +1,4 @@
+<%@page import="accesodato.Coneccion"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
@@ -55,26 +56,14 @@
                             </thead>
                             <tbody>
                                 <%
-                                    Connection con=null;
-                                    String driver="com.mysql.jdbc.Driver";
-                                    String user="root";
-                                    String pass="";
-                                    String url="jdbc:mysql://localhost:3306/javaee";
-                                    try{
-                                        Class.forName(driver);
-                                        con=DriverManager.getConnection(url, user, pass);
-                                        Statement stmt=con.createStatement();
-                                        stmt.executeQuery("select * from Ciudades where estado='activo'");
-                                        ResultSet rs=stmt.getResultSet();
-                                        while(rs.next()){
-                                            out.println("<tr>");
-                                                out.println("<td>"+rs.getString("ciudad_id")+"</td>");
-                                                out.println("<td>"+rs.getString("nombre")+"</td>");
-                                               out.println("</tr>");
-                                        }
-                                    }catch(Exception ex){
-                                        out.println("Error de conexion!!"+ex.getMessage());
-                                    }
+                                   Coneccion con=new Coneccion();
+                                   con.setConsulta("select * from Ciudades");
+                                   while(con.getResultado().next()){
+                                    out.println("<tr>");
+                                       out.println("<td>"+con.getResultado().getString("ciudad_id")+"</td>");
+                                       out.println("<td>"+con.getResultado().getString("nombre")+"</td>");
+                                    out.println("</tr>");
+                                   }
                                 %>
                             </tbody>
                         </table>
